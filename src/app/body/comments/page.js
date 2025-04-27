@@ -10,9 +10,9 @@ export default function Page() {
     // Insert the comment from the form into the Postgres database
     //await sql('INSERT INTO comments (comment) VALUES ($1)', [comment]);
     //sql'INSERT INTO comments (comment) VALUES ($1)'
-    sql.query("INSERT INTO comments (comment) VALUES ($1)",[comment])
+    await sql.query("INSERT INTO comments (comment) VALUES ($1)",[comment])
     console.log(sql)
-    let comments = sql.query("Select * FROM comments")
+    let comments = await sql.query("Select * FROM comments")
   }
 
   return (<div>
