@@ -20,7 +20,7 @@ export default function Page() {
       <input type="text" placeholder="write a comment" name="comment" />
       <button type="submit">Submit</button>
     </form>
-    
+    <p>{comments}</p>
     </div>
 );
 }
