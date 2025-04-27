@@ -11,7 +11,7 @@ export default function Page() {
     //await sql('INSERT INTO comments (comment) VALUES ($1)', [comment]);
     //sql'INSERT INTO comments (comment) VALUES ($1)'
     sql.query("INSERT INTO comments (comment) VALUES ($1)",[comment])
-    console.info(sql)
+    console.log(sql)
     let comments = sql.query("Select * FROM comments")
   }
 
