@@ -14,7 +14,7 @@ export default function Page() {
     console.log(sql)
     let comments = await sql.query("Select * FROM comments")
     let commentstr = comments.toString()
-
+  }
   return (<div>
     <form action={create}>
       <input type="text" placeholder="write a comment" name="comment" />
@@ -24,4 +24,3 @@ export default function Page() {
     </div>
 );
     }
-}
