@@ -11,12 +11,16 @@ export default function Page() {
     //await sql('INSERT INTO comments (comment) VALUES ($1)', [comment]);
     //sql'INSERT INTO comments (comment) VALUES ($1)'
     sql.query("INSERT INTO comments (comment) VALUES ($1)",[comment])
+    console.info(sql)
+    let comments = sql.query("Select * FROM comments")
   }
 
-  return (
+  return (<div>
     <form action={create}>
       <input type="text" placeholder="write a comment" name="comment" />
       <button type="submit">Submit</button>
     </form>
-  );
+    
+    </div>
+);
 }
