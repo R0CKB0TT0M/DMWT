@@ -3,8 +3,8 @@ import Link from "next/link";
 export default function Header() {
     return (
         // rechtsbündig, vertikal, blau, schrift weiß, Abstand 4
-        <header className="flex justify-end items-center bg-blue-600 text-white p-4">
-            <div className="flex space-x-4">
+        <header className="align= right flex justify-end items-center bg-blue-600 text-white p-8">
+            <div className="flex space-x-8">
                 {/*Button 1*/}
                 <Link href="/FAQ">
                     {/*hintergrund grün, weißer text, abstand, button abgerundet, grauer hintergrund(beim hover), transition beim Übergang*/}
