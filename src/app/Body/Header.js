@@ -14,6 +14,7 @@ export default function Header() {
                 </Link>
                 //Button 2
                 <Link href="/login">
+                    //hintergrund blai, weißer text, button abgerunded, grauer hintergrund, transition beim Übergang
                     <button className="bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-gray-200 transition">
                         Login
                     </button>
