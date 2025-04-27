@@ -7,14 +7,14 @@ export default function Header() {
             <div className="flex space-x-4">
                 //Button 1
                 <Link href="/FAQ">
-                    // hintergrund grün, weißer text, abstand, button abgerunded, grauer hintergrund, transition beim Übergang
+                    // hintergrund grün, weißer text, abstand, button abgerundet, grauer hintergrund(beim hover), transition beim Übergang
                     <button className="bg-green text-white py-2 px-4 rounded hover:bg-gray-200 transition">
                         Ask a Question?
                     </button>
                 </Link>
                 //Button 2
                 <Link href="/login">
-                    //hintergrund blai, weißer text, button abgerunded, grauer hintergrund, transition beim Übergang
+                    //hintergrund blau, weißer text, button abgerundet, grauer hintergrund(beim hover), transition beim Übergang
                     <button className="bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-gray-200 transition">
                         Login
                     </button>
