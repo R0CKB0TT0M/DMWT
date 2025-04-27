@@ -1,31 +1,40 @@
-// File: app/page.tsx
 import { neon } from '@neondatabase/serverless';
+import { useEffect, useState } from 'react';
 
 export default function Page() {
-    const sql = neon(`${process.env.DATABASE_URL}`);
-    let comments = sql.query("SELECT comment FROM comments;"); 
-    let commentstr = comments.rows.map(row => row.comment);
+  const [comments, setComments] = useState([]);
+
+  useEffect(() => {
+    async function fetchComments() {
+      const sql = neon(`${process.env.DATABASE_URL}`);
+      const result = await sql.query("SELECT comment FROM comments;");
+      setComments(result.rows.map((row) => row.comment));
+    }
+
+    fetchComments();
+  }, []);
+
   async function create(formData) {
     'use server';
-    // Connect to the Neon database
     const sql = neon(`${process.env.DATABASE_URL}`);
     const comment = formData.get('comment');
-    // Insert the comment from the form into the Postgres database
-    //await sql('INSERT INTO comments (comment) VALUES ($1)', [comment]);
-    //sql'INSERT INTO comments (comment) VALUES ($1)'
-    await sql.query("INSERT INTO comments (comment) VALUES ($1)",[comment]);
-    console.log(sql);
+    await sql.query("INSERT INTO comments (comment) VALUES ($1)", [comment]);
+    fetchComments();
   }
-  
 
-
-
-  return (<div>
-    <form action={create}>
-      <input type="text" placeholder="write a comment" name="comment" />
-      <button type="submit">Submit</button>
-    </form>
-    <p id="comments">{commentstr}</p>
+  return (
+    <div>
+      <form action={create}>
+        <input type="text" placeholder="Write a comment" name="comment" />
+        <button type="submit">Submit</button>
+      </form>
+      <div id="comments">
+        {comments.length > 0 ? (
+          comments.map((comment, index) => <p key={index}>{comment}</p>)
+        ) : (
+          <p>No comments yet.</p>
+        )}
+      </div>
     </div>
-);
-    }
+  );
+}
