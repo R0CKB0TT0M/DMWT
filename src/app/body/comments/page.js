@@ -3,7 +3,8 @@ import { neon } from '@neondatabase/serverless';
 
 export default function Page() {
     const sql = neon(`${process.env.DATABASE_URL}`);
-    let comment = sql.query("SELECT * FROM comments;"); 
+    let comments = sql.query("SELECT comment FROM comments;"); 
+    let commentstr = comments.rows.map(row => row.comment);
   async function create(formData) {
     'use server';
     // Connect to the Neon database
@@ -24,7 +25,7 @@ export default function Page() {
       <input type="text" placeholder="write a comment" name="comment" />
       <button type="submit">Submit</button>
     </form>
-    <p id="comments">{comment}</p>
+    <p id="comments">{commentstr}</p>
     </div>
 );
     }
