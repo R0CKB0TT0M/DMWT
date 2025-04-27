@@ -13,14 +13,14 @@ export default function Page() {
     await sql.query("INSERT INTO comments (comment) VALUES ($1)",[comment])
     console.log(sql)
     let comments = await sql.query("Select * FROM comments")
-  }
+    let commentstr = comments.toString()
 
   return (<div>
     <form action={create}>
       <input type="text" placeholder="write a comment" name="comment" />
       <button type="submit">Submit</button>
     </form>
-    <p>{comments}</p>
+    <p id="comments">{commentstr}</p>
     </div>
 );
 }
