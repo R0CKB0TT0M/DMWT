@@ -23,4 +23,5 @@ export default function Page() {
     <p id="comments">{commentstr}</p>
     </div>
 );
+    }
 }
