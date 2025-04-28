@@ -1,45 +1,27 @@
-'use client'; // Ensure it's a client-side component
+'use client';
 
 import React, { useState } from 'react';
 
-interface Comment {
-  comment: string;
-}
+export default function CommentForm({ onCommentSubmit }: { onCommentSubmit: (comment: string) => void }) {
+  const [comment, setComment] = useState('');
 
-export default function CommentForm({ onCommentSubmit }: { onCommentSubmit: () => void }) {
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    const formData = new FormData(event.target as HTMLFormElement);
-    const comment = formData.get('comment') as string;
-
-    try {
-      const response = await fetch('/api/comments', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ comment }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error('Failed to submit comment:', errorData);
-        return;
-      }
-
-      const data = await response.json();
-      console.log('Comment submitted successfully:', data);
-
-      // Call the onCommentSubmit function to refetch comments after submission
-      onCommentSubmit();
-    } catch (error) {
-      console.error('Error submitting comment:', error);
+    if (comment.trim()) {
+      onCommentSubmit(comment);  // Submit the comment to the parent component
+      setComment('');  // Clear the form input
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" placeholder="Write a comment" name="comment" />
+      <input
+        type="text"
+        placeholder="Write a comment"
+        name="comment"
+        value={comment}
+        onChange={(e) => setComment(e.target.value)}
+      />
       <button type="submit">Submit</button>
     </form>
   );
