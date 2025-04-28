@@ -1,8 +1,12 @@
-'use client'; // This is important for client-side rendering
+'use client'; // Ensure it's a client-side component
 
-import React from 'react';
+import React, { useState } from 'react';
 
-export default function CommentForm() {
+interface Comment {
+  comment: string;
+}
+
+export default function CommentForm({ onCommentSubmit }: { onCommentSubmit: () => void }) {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const formData = new FormData(event.target as HTMLFormElement);
@@ -17,16 +21,17 @@ export default function CommentForm() {
         body: JSON.stringify({ comment }),
       });
 
-      // Check if the response is OK (status code 200-299)
       if (!response.ok) {
         const errorData = await response.json();
         console.error('Failed to submit comment:', errorData);
         return;
       }
 
-      // Parse the successful response (it should be valid JSON)
       const data = await response.json();
       console.log('Comment submitted successfully:', data);
+
+      // Call the onCommentSubmit function to refetch comments after submission
+      onCommentSubmit();
     } catch (error) {
       console.error('Error submitting comment:', error);
     }

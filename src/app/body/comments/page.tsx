@@ -1,31 +1,44 @@
-// File: app/page.tsx
+'use client'; // Ensure this component runs on the client-side
+
+import { useState, useEffect } from 'react';
 import { neon } from '@neondatabase/serverless';
 import CommentForm from './CommentForm';
 
-export default async function Page() {
-  const sql = neon(`${process.env.DATABASE_URL}`);
-  
-  // Define the type for comments as an array of objects with a 'comment' string
-  let comments: { comment: string }[] = [];
+export default function Page() {
+  const [comments, setComments] = useState<{ comment: string }[]>([]);
 
-  try {
-    // Fetch comments from the database
-    const result = await sql.query("SELECT comment FROM comments;");
-    
-    // Assign the result to comments, ensuring it has the correct type
-    comments = (result as { comment: string }[]) || [];  // Default to empty array if no results are found
-  } catch (error) {
-    console.error('Error fetching comments:', error);
-    comments = [];  // In case of an error, set comments to an empty array
-  }
+  // Fetch the comments from the database
+  const fetchComments = async () => {
+    const sql = neon(`${process.env.DATABASE_URL}`);
+    try {
+      const result = await sql.query('SELECT comment FROM comments');
+
+      // Type assertion here to ensure TypeScript treats the result as { comment: string }[]
+      const commentsData = result as { comment: string }[];
+
+      setComments(commentsData); // Update the state with fetched comments
+    } catch (error) {
+      console.error('Error fetching comments:', error);
+    }
+  };
+
+  // Fetch comments when the component mounts
+  useEffect(() => {
+    fetchComments();
+  }, []);  // Empty dependency array makes sure this only runs once when the component mounts
+
+  // Function to trigger a refetch when a new comment is added
+  const handleNewComment = () => {
+    fetchComments();  // Refetch the comments after a new one is submitted
+  };
 
   return (
     <div>
       <h1>Comments</h1>
-      <CommentForm />
+      <CommentForm onCommentSubmit={handleNewComment} />  {/* Pass refetch function */}
       <div id="comments">
         {comments.length > 0 ? (
-          comments.map((row, index) => <p key={index}>{row.comment}</p>)
+          comments.map((row, index) => <p key={index}>{row.comment}</p>)  // Render each comment
         ) : (
           <p>No comments yet.</p>
         )}
