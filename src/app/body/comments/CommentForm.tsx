@@ -1,55 +1,40 @@
 // File: app/CommentForm.tsx
-'use client';
+'use client'; // This is important to indicate it's a client-side component
 
-import { useState } from 'react';
+import React from 'react';
 
 export default function CommentForm() {
-  const [comment, setComment] = useState('');
-  const [status, setStatus] = useState('');
-
-  async function handleSubmit(event: React.FormEvent) {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-
-    if (!comment.trim()) {
-      return;
-    }
-
-    // Submit the comment to the server
-    setStatus('Submitting...');
+    const formData = new FormData(event.target as HTMLFormElement);
+    const comment = formData.get('comment') as string;
 
     try {
-      const formData = new FormData();
-      formData.append('comment', comment);
-
-      const res = await fetch('/api/comments', {
+      const response = await fetch('/api/comments', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ comment }),
       });
 
-      if (res.ok) {
-        setComment('');
-        setStatus('Comment submitted!');
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log('Comment submitted:', data);
+        // Optionally, clear the form or show a success message
       } else {
-        setStatus('Failed to submit comment.');
+        console.error('Failed to submit comment:', data);
       }
     } catch (error) {
-      setStatus('An error occurred.');
+      console.error('Error submitting comment:', error);
     }
-  }
+  };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="comment"
-          placeholder="Write a comment"
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-        />
-        <button type="submit">Submit</button>
-      </form>
-      {status && <p>{status}</p>}
-    </div>
+    <form onSubmit={handleSubmit}>
+      <input type="text" placeholder="Write a comment" name="comment" />
+      <button type="submit">Submit</button>
+    </form>
   );
 }
