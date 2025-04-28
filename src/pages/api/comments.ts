@@ -14,6 +14,7 @@ export default async function handler(req: any, res: any) {
       await sql.query("INSERT INTO comments (comment) VALUES ($1)", [comment]);
       return res.status(200).json({ message: 'Comment submitted successfully' });
     } catch (error) {
+      console.error('Error inserting comment:', error);
       return res.status(500).json({ error: 'Failed to insert comment' });
     }
   } else {
