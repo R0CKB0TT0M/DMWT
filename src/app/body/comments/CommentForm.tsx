@@ -1,5 +1,4 @@
-// File: app/CommentForm.tsx
-'use client'; // This is important to indicate it's a client-side component
+'use client'; // This is important for client-side rendering
 
 import React from 'react';
 
@@ -18,14 +17,16 @@ export default function CommentForm() {
         body: JSON.stringify({ comment }),
       });
 
-      const data = await response.json();
-
-      if (response.ok) {
-        console.log('Comment submitted:', data);
-        // Optionally, clear the form or show a success message
-      } else {
-        console.error('Failed to submit comment:', data);
+      // Check if the response is OK (status code 200-299)
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Failed to submit comment:', errorData);
+        return;
       }
+
+      // Parse the successful response (it should be valid JSON)
+      const data = await response.json();
+      console.log('Comment submitted successfully:', data);
     } catch (error) {
       console.error('Error submitting comment:', error);
     }
