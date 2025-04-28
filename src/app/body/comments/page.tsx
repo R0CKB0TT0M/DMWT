@@ -8,7 +8,7 @@ export default async function Page() {
   let comments = [];
   try {
     const result = await sql.query("SELECT comment FROM comments;");
-    comments = result?.rows || [];  // Safeguard: Default to empty array if no rows are found
+    comments = result || [];  // Safeguard: Default to empty array if no rows are found
   } catch (error) {
     console.error('Error fetching comments:', error);
     comments = []; // In case of an error, set comments to an empty array
