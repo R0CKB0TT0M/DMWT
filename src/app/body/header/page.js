@@ -1,16 +1,17 @@
 import Link from "next/link";
+import "./header.css"; // eigene CSS-Datei einbinden
 
 export default function Header() {
     return (
-        <header className="bg-blue-600 py-4">
-            <div className="container mx-auto flex justify-end space-x-4">
+        <header className="custom-header">
+            <div className="button-container">
                 <Link href="/FAQ">
-                    <button className="bg-green-600 text-white font-semibold py-2 px-4 rounded hover:bg-gray-200 transition">
+                    <button className="faq-button">
                         Ask a Question?
                     </button>
                 </Link>
                 <Link href="/login">
-                    <button className="bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-gray-200 transition">
+                    <button className="login-button">
                         Login
                     </button>
                 </Link>

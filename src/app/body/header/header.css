@@ -1,0 +1,41 @@
+/* Blauer Hintergrund für Header */
+.custom-header {
+    background-color: #2563eb; /* Tailwind-Farbe: bg-blue-600 */
+    padding: 1rem;
+}
+
+/* Buttons rechtsbündig nebeneinander mit Abstand */
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem; /* Abstand zwischen Buttons */
+}
+
+/* Gemeinsames Button-Styling */
+.faq-button,
+.login-button {
+    color: white;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem; /* abgerundet */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* FAQ Button: grün */
+.faq-button {
+    background-color: #16a34a; /* Tailwind: bg-green-600 */
+}
+
+/* Login Button: blau */
+.login-button {
+    background-color: #2563eb; /* Tailwind: bg-blue-600 */
+}
+
+/* Hover-Effekt: grauer Hintergrund, schwarzer Text */
+.faq-button:hover,
+.login-button:hover {
+    background-color: #e5e7eb; /* Tailwind: bg-gray-200 */
+    color: black;
+}
