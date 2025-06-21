@@ -13,6 +13,7 @@ export default function Header() {
                 <Link href="/login">
                     <button className="login-button">
                         Login
+                        src/app/page.js
                     </button>
                 </Link>
             </div>
