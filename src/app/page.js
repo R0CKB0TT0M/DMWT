@@ -3,11 +3,10 @@ import styles from "./page.module.css";
 import React from 'react';
 import ScrollImageViewer from './body/Image_rotation';
 
-function Page() {
+
+function page() {
     return <ScrollImageViewer />;
 }
-
-export default Page;
 
 export default function Home() {
     return (

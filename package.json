@@ -1,4 +1,4 @@
-{
+  {
   "name": "dmwt",
   "version": "0.1.0",
   "private": true,
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.0",
-    "motion": "^12.18.1",
+    "framer-motion": "^12.19.2",
     "next": "15.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
