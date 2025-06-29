@@ -9,7 +9,7 @@ export default function CenterImage() {
     const { index } = useScrollIndex();
 
     return (
-        <div className="w-full h-auto">
+        <div className="w-full max-w-[400px] h-auto">
             <AnimatePresence mode="wait">
                 {index < 3 && (
                     <motion.img
