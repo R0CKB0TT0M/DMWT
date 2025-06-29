@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const texts = [
     [
-        "Ella hat Diabetes. Da sie aber\n weiß, wie sie damit umgehen soll",
+        "Ella hat Diabetes. Da sie aber weiß, wie sie damit umgehen soll",
         "ist das für sie kein Problem mehr. Früher war das anders.",
         "Sie hatte damals sehr große Probleme eine richtige Ernährung",
         "zu finden und ihr Blutzuckerspiegel spielte verrückt."

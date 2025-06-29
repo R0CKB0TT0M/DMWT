@@ -6,11 +6,6 @@ export default function Header() {
     return (
         <header className="custom-header">
             <div className="button-container">
-                <Link href="/recipes">
-                    <button className="login-button">
-                        Browse Recipes
-                    </button>
-                </Link>
                 <Link href="/FAQ">
                     <button className="faq-button">
                         Ask a Question?

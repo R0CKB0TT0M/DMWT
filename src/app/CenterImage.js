@@ -20,7 +20,7 @@ export default function CenterImage() {
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 1.05 }}
                         transition={{ duration: 0.5 }}
-                        className="w-full h-auto rounded-xl"
+                        className="w-[30%] h-auto object-cover rounded-xl"
                     />
                 )}
             </AnimatePresence>
