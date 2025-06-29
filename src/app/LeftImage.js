@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const images = ["/images/0600.png", "/images/1200.png", "/images/1800.png"];
 
+
 export default function LeftImage() {
     const { index } = useScrollIndex();
 
