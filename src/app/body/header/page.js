@@ -16,9 +16,9 @@ export default function Header() {
                         Ask a Question?
                     </button>
                 </Link>
-                <Link href="/login">
+                <Link href="https://dmwt-chi.vercel.app/body/comments">
                     <button className="login-button">
-                        Login
+                        Comments
                     </button>
                 </Link>
             </div>
