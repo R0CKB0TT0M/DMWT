@@ -14,13 +14,19 @@ function MainContent() {
         <div className="relative h-full">
             <Header />
             {index < 3 ? (
-                <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-xl">
+                <div className="grid grid-cols-5 gap-4 h-full p-8 pt-24 place-items-center min-h-screen bg-[#78FFCD]">
                     <LeftImage />
+                    <div className="col-span-2 w-full">
                     <CenterImage />
+                    </div>
+                    <div className="col-span-2 w-full">
                     <RightText />
+                    </div>
                 </div>
             ) : (
+                <div className="grid grid-cols-1 gap-4 h-full p-8 pt-24 place-items-center min-h-screen bg-[#78FFCD]">
                <Footer />
+               </div>
 
             )
             }

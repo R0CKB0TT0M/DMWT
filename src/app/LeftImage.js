@@ -21,7 +21,7 @@ export default function LeftImage() {
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: 30 }}
                         transition={{ duration: 0.5 }}
-                        className="w-24 h-24 object-cover rounded-full mx-auto mb-4"
+                        className="w-full h-auto rounded-xl"
                     />
                 )}
             </AnimatePresence>

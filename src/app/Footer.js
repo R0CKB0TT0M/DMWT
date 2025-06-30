@@ -8,9 +8,22 @@ export default function NewsletterSignup() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        AddSubscription
         console.log("Newsletter angemeldet:", email);
         setEmail("");
+
+
     };
+
+    const AddSubscription = async (subscription) => {
+    try {
+      const response = await fetch('/api/subscribers', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ subscription }),  // Send the new comment in the request body
+      });}catch{}};
 
     return (
         <motion.div
