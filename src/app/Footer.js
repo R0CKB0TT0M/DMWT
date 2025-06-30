@@ -6,14 +6,7 @@ import { useState } from "react";
 export default function NewsletterSignup() {
     const [email, setEmail] = useState("");
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        AddSubscription(email)
-        console.log("Newsletter angemeldet:", email);
-        setEmail("");
-
-
-    };
+    
 
     const AddSubscription = async (subscription) => {
     try {
@@ -23,7 +16,24 @@ export default function NewsletterSignup() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ subscription }),  // Send the new comment in the request body
-      });}catch{}};
+      });if (!response.ok) {
+        throw new Error("Failed to add subscription");
+      }
+
+      console.log("Subscription successful:", subscription);
+    } catch (error) {
+      console.error("Error adding subscription:", error);
+    }
+  };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        AddSubscription(email)
+        console.log("Newsletter angemeldet:", email);
+        setEmail("");
+
+
+    };
 
     return (
         <motion.div
