@@ -14,7 +14,7 @@ function MainContent() {
         <div className="relative h-full">
             <Header />
             {index < 3 ? (
-                <div className="grid grid-cols-3 gap-4 h-full p-8 pt-24 items-center">
+                <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-xl">
                     <LeftImage />
                     <CenterImage />
                     <RightText />

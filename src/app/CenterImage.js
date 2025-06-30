@@ -9,7 +9,7 @@ export default function CenterImage() {
     const { index } = useScrollIndex();
 
     return (
-        <div className="w-full max-w-[400px] h-auto">
+        <div className="flex flex-col md:flex-row items-start gap-6">
             <AnimatePresence mode="wait">
                 {index < 3 && (
                     <motion.img
@@ -20,7 +20,7 @@ export default function CenterImage() {
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 1.05 }}
                         transition={{ duration: 0.5 }}
-                        className="w-[30%] h-auto object-cover rounded-xl"
+                        className="w-full md:w-1/2 h-auto object-cover rounded-lg"
                     />
                 )}
             </AnimatePresence>
