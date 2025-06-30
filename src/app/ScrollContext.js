@@ -13,7 +13,7 @@ export function useScrollIndex() {
 // Provider-Komponente
 export function ScrollProvider({ children }) {
     const [index, setIndex] = useState(0);
-    const maxIndex = 4; // maximale Anzahl an Abschnitten (anpassen!)
+    const maxIndex = 4; // maximale Anzahl an Abschnitten
     const lastScrollTimeRef = useRef(0); // Zeit des letzten Scroll-Events
     const scrollCooldown = 800; // Zeit in ms zwischen Scrolls (verlangsamt das Scrollen)
 
