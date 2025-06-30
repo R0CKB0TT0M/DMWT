@@ -8,7 +8,7 @@ export default function NewsletterSignup() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        AddSubscription
+        AddSubscription(email)
         console.log("Newsletter angemeldet:", email);
         setEmail("");
 
