@@ -13,14 +13,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const sql = neon(dbUrl);
   if (req.method === 'POST') {
     try {
-      const { subscribers } = req.body;
+      const { subscribtion } = req.body;
 
-      if (!subscribers) {
+      if (!subscribtion) {
         return res.status(400).json({ error: 'Subscriber is required' });
       }
 
       // Insert the new comment into the database
-      await sql.query('INSERT INTO subscribers (subscriber) VALUES ($1)', [subscribers]);
+      await sql.query('INSERT INTO subscribers (subscriber) VALUES ($1)', [subscribtion]);
 
       res.status(201).json({ message: 'Subscription added successfully' });
     } catch (error) {
